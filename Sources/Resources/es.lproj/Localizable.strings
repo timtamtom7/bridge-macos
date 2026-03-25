@@ -1,0 +1,60 @@
+/*
+  Localizable.strings
+  Bridge
+
+  Spanish localization
+*/
+
+// General
+"OK" = "Aceptar";
+"Cancel" = "Cancelar";
+"Done" = "Listo";
+"Error" = "Error";
+"Success" = "Éxito";
+"Warning" = "Advertencia";
+"Loading" = "Cargando...";
+"Retry" = "Reintentar";
+
+// Devices
+"Devices" = "Dispositivos";
+"No devices found" = "No se encontraron dispositivos";
+"Device name" = "Nombre del dispositivo";
+"Device model" = "Modelo del dispositivo";
+"Last sync" = "Última sincronización";
+"Storage used" = "Almacenamiento utilizado";
+"Photos" = "Fotos";
+"Contacts" = "Contactos";
+"Messages" = "Mensajes";
+
+// Sync
+"Sync" = "Sincronizar";
+"Syncing..." = "Sincronizando...";
+"Sync complete" = "Sincronización completada";
+"Sync failed" = "Error de sincronización";
+"Resume sync" = "Reanudar sincronización";
+"Abort sync" = "Cancelar sincronización";
+
+// Settings
+"Settings" = "Configuración";
+"Preferences" = "Preferencias";
+"General" = "General";
+"Cloud Storage" = "Almacenamiento en la nube";
+"Google Drive" = "Google Drive";
+"Dropbox" = "Dropbox";
+"S3" = "S3";
+"Connect" = "Conectar";
+"Disconnect" = "Desconectar";
+"Quota used" = "Cuota utilizada";
+
+// Photos
+"Import photos" = "Importar fotos";
+"Export photos" = "Exportar fotos";
+"Select photos" = "Seleccionar fotos";
+"Import selected" = "Importar seleccionados";
+"Delete photos" = "Eliminar fotos";
+
+// Accessibility
+"VoiceOver.labels.devices" = "Lista de dispositivos conectados";
+"VoiceOver.labels.sync" = "Botón de sincronización";
+"VoiceOver.labels.settings" = "Configuración de Bridge";
+"VoiceOver.values.storageUsed" = "Almacenamiento utilizado: %@ de %@";
