@@ -15,17 +15,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
     }
 
-    nonisolated func applicationDidFinishLaunching(_ notification: Notification) {
-        Task { @MainActor in
-            self.setupStatusItem()
-            self.setupPopover()
-            self.setupDeviceMonitor()
-            self.setupMainMenu()
-            self.store.loadSettings()
-        }
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        self.setupStatusItem()
+        self.setupPopover()
+        self.setupDeviceMonitor()
+        self.setupMainMenu()
+        self.store.loadSettings()
+
+        // Initialize BridgeState for shortcuts
+        BridgeState.shared.configure(store: self.store)
+
+        // Start device health monitoring
+        DeviceHealthMonitor.shared.requestNotificationPermission()
+        DeviceHealthMonitor.shared.startMonitoring()
     }
 
-    nonisolated func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
     }
 
@@ -72,7 +77,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setupDeviceMonitor() {
-        let monitor = DeviceMonitorService.shared
+        let monitor = DeviceMonitorService(store: store)
         deviceMonitor = monitor
         monitor.startMonitoring()
     }
@@ -101,14 +106,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func showSettings() {
-        Task { @MainActor in
-            self.store.showSettings = true
-        }
+        // Settings would open a preferences window
     }
 
     @objc private func refreshDevices() {
         Task { @MainActor in
-            self.deviceMonitor?.refresh()
+            await store.refreshDevices()
         }
     }
 
@@ -122,5 +125,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         mainWindow?.title = "Bridge"
         mainWindow?.contentViewController = NSHostingController(rootView: ContentView(store: store))
         mainWindow?.makeKeyAndOrderFront(nil)
+    }
+}
+
+// MARK: - BridgeState
+
+@MainActor
+final class BridgeState {
+    static let shared = BridgeState()
+
+    var store: BridgeStore?
+
+    var devices: [Device] {
+        store?.devices ?? []
+    }
+
+    var primaryDevice: Device? {
+        devices.first { $0.isPrimary } ?? devices.first
+    }
+
+    private init() {}
+
+    func configure(store: BridgeStore) {
+        self.store = store
     }
 }

@@ -198,8 +198,8 @@ final class BridgeStore: ObservableObject {
         case .success:
             backupProgress = .completed
             recordSync(deviceID: device.id, type: .backup, items: 0)
-        case .failure(let msg):
-            backupProgress = .failed(msg)
+        case .failure(let error):
+            backupProgress = .failed(error.localizedDescription)
         }
     }
 
