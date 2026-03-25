@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F960F7FF9C6EB7A8E790CCF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1976F13198308BFD7B339F /* Models.swift */; };
 		5C69B31D6CFCD0F2FA37E27F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55146E152CD70EA89152C68D /* ContentView.swift */; };
+		624A592403D099889609F3C3 /* test_write.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DC08BDC865B58E9C2447DB3 /* test_write.txt */; };
 		6B619FF376AFABCC3E5DBB32 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 89C50F40CDFC60930E61F7B1 /* SQLite */; };
 		7504E5FC8DF6B9B7A19E84AB /* BridgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA000D702B0245E096335B /* BridgeStore.swift */; };
 		80B36A5B9693169B0D0E930C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396727DE746399ABE0E7D989 /* main.swift */; };
@@ -18,11 +19,14 @@
 		AB86F5AFA54E38CB84EA7B47 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */; };
 		ACD720CFF8EAB761CCD3E5D2 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB570AAF34D2CCBABD04CFF /* PhotoService.swift */; };
 		B7C58C263A503BC515290148 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C0989A6283B12B873DBF1 /* DeviceService.swift */; };
+		F730BE82D97B9CA2552BAF58 /* ExtendedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382360AD7E11881FBC81803C /* ExtendedModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		2BFE42DAA3580971FFBE20D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2DC08BDC865B58E9C2447DB3 /* test_write.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_write.txt; sourceTree = "<group>"; };
+		382360AD7E11881FBC81803C /* ExtendedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedModels.swift; sourceTree = "<group>"; };
 		396727DE746399ABE0E7D989 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3D0C0989A6283B12B873DBF1 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		3DB570AAF34D2CCBABD04CFF /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -57,11 +61,13 @@
 				80AA7C8EFBEAC6D777E3C224 /* ContactService.swift */,
 				55146E152CD70EA89152C68D /* ContentView.swift */,
 				3D0C0989A6283B12B873DBF1 /* DeviceService.swift */,
+				382360AD7E11881FBC81803C /* ExtendedModels.swift */,
 				2BFE42DAA3580971FFBE20D3 /* Info.plist */,
 				396727DE746399ABE0E7D989 /* main.swift */,
 				4A1976F13198308BFD7B339F /* Models.swift */,
 				3DB570AAF34D2CCBABD04CFF /* PhotoService.swift */,
 				14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */,
+				2DC08BDC865B58E9C2447DB3 /* test_write.txt */,
 				BCCE133DAC0692F818945BBD /* Theme.swift */,
 			);
 			path = Sources;
@@ -91,6 +97,7 @@
 			buildConfigurationList = C42B1A54D22B91E34796471E /* Build configuration list for PBXNativeTarget "Bridge" */;
 			buildPhases = (
 				B7ACD7B96F68BDDDA4EF2E93 /* Sources */,
+				0A4D4B35D24B404F1BF6D859 /* Resources */,
 				E57B7B6DC6FEFD0CD8E051DF /* Frameworks */,
 			);
 			buildRules = (
@@ -139,6 +146,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		0A4D4B35D24B404F1BF6D859 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				624A592403D099889609F3C3 /* test_write.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B7ACD7B96F68BDDDA4EF2E93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -149,6 +167,7 @@
 				8E2F6B1419C5095DAF52E738 /* ContactService.swift in Sources */,
 				5C69B31D6CFCD0F2FA37E27F /* ContentView.swift in Sources */,
 				B7C58C263A503BC515290148 /* DeviceService.swift in Sources */,
+				F730BE82D97B9CA2552BAF58 /* ExtendedModels.swift in Sources */,
 				4F960F7FF9C6EB7A8E790CCF /* Models.swift in Sources */,
 				ACD720CFF8EAB761CCD3E5D2 /* PhotoService.swift in Sources */,
 				AB86F5AFA54E38CB84EA7B47 /* SettingsStore.swift in Sources */,
@@ -164,14 +183,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/Bridge.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.timtamtom.Bridge;
+				OTHER_LDFLAGS = (
+					"-F",
+					/Library/Apple/System/Library/PrivateFrameworks,
+					"-framework",
+					MobileDevice,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bridgeapp.bridge;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -209,6 +234,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -246,14 +272,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/Bridge.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.timtamtom.Bridge;
+				OTHER_LDFLAGS = (
+					"-F",
+					/Library/Apple/System/Library/PrivateFrameworks,
+					"-framework",
+					MobileDevice,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bridgeapp.bridge;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -291,6 +323,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;

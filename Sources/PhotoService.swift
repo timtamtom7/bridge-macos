@@ -8,38 +8,19 @@ actor PhotoService {
         guard let mountPath = mountDevice(device) else { return [] }
         var photos: [Photo] = []
         let dcimPath = mountPath.appendingPathComponent("DCIM")
-        guard let enumerator = FileManager.default.enumerator(
-            at: dcimPath,
-            includingPropertiesForKeys: [.fileSizeKey, .creationDateKey],
-            options: [.skipsHiddenFiles]
-        ) else { return [] }
-
+        guard let enumerator = FileManager.default.enumerator(at: dcimPath, includingPropertiesForKeys: [.fileSizeKey, .creationDateKey], options: [.skipsHiddenFiles]) else { return [] }
         for case let fileURL as URL in enumerator {
             let ext = fileURL.pathExtension.lowercased()
             guard ["jpg", "jpeg", "png", "heic", "heif", "gif", "tiff", "bmp"].contains(ext) else { continue }
             let resourceValues = try? fileURL.resourceValues(forKeys: [.fileSizeKey, .creationDateKey])
-            let photo = Photo(
-                filename: fileURL.lastPathComponent,
-                path: fileURL.path,
-                creationDate: resourceValues?.creationDate,
-                fileSize: Int64(resourceValues?.fileSize ?? 0)
-            )
-            photos.append(photo)
+            photos.append(Photo(filename: fileURL.lastPathComponent, path: fileURL.path, creationDate: resourceValues?.creationDate, fileSize: Int64(resourceValues?.fileSize ?? 0)))
         }
         return photos
     }
 
     private func mountDevice(_ device: Device) -> URL? {
-        let candidatePaths = [
-            "/Volumes/\(device.name)/DCIM",
-            "/Volumes/MobileSync/DCIM",
-            "/Volumes/iPhone/DCIM"
-        ]
-        for path in candidatePaths {
-            if FileManager.default.fileExists(atPath: path) {
-                return URL(fileURLWithPath: path)
-            }
-        }
+        let candidatePaths = ["/Volumes/\(device.name)/DCIM", "/Volumes/MobileSync/DCIM", "/Volumes/iPhone/DCIM"]
+        for path in candidatePaths { if FileManager.default.fileExists(atPath: path) { return URL(fileURLWithPath: path) } }
         return nil
     }
 
@@ -49,9 +30,7 @@ actor PhotoService {
         guard let db = try? Connection(dbPath.path) else { return false }
         let table = Table("imported_photos")
         let query = table.filter(Expression<String>("filename") == photo.filename)
-        do {
-            if let _ = try db.pluck(query) { return true }
-        } catch { }
+        do { if let _ = try db.pluck(query) { return true } } catch { }
         return false
     }
 
@@ -68,8 +47,6 @@ actor PhotoService {
                 placeholder = creationRequest.placeholderForCreatedAsset
             }
             return placeholder != nil
-        } catch {
-            return false
-        }
+        } catch { return false }
     }
 }

@@ -10,8 +10,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let store: BridgeStore
     private var mainWindow: NSWindow?
 
-    nonisolated init() {
-        self.store = MainActor.assumeIsolated { BridgeStore() }
+    override init() {
+        self.store = BridgeStore()
         super.init()
     }
 
@@ -29,70 +29,98 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
 
+    // MARK: - Setup
+
     private func setupStatusItem() {
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "iphone", accessibilityDescription: "Bridge")
-            button.action = #selector(togglePopover)
-            button.target = self
-        }
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+
+        guard let button = statusItem.button else { return }
+        button.title = "Bridge"
+        button.action = #selector(togglePopover)
+        button.target = self
     }
 
     private func setupPopover() {
         popover = NSPopover()
-        popover.contentSize = NSSize(width: 480, height: 520)
+        popover.contentSize = NSSize(width: 380, height: 520)
         popover.behavior = .transient
-        popover.animates = true
         popover.contentViewController = NSHostingController(rootView: ContentView(store: store))
-    }
-
-    @objc private func togglePopover() {
-        if let button = statusItem.button {
-            if popover.isShown { popover.performClose(nil) }
-            else { popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY) }
-        }
-    }
-
-    private func setupDeviceMonitor() {
-        deviceMonitor = DeviceMonitorService(store: store)
-        deviceMonitor?.startMonitoring()
     }
 
     private func setupMainMenu() {
         let mainMenu = NSMenu()
+        NSApp.mainMenu = mainMenu
+
+        let appMenuItem = NSMenuItem()
+        mainMenu.addItem(appMenuItem)
         let appMenu = NSMenu()
+        appMenuItem.submenu = appMenu
+
         appMenu.addItem(withTitle: "About Bridge", action: #selector(showAbout), keyEquivalent: "")
         appMenu.addItem(NSMenuItem.separator())
+        appMenu.addItem(withTitle: "Settings...", action: #selector(showSettings), keyEquivalent: ",")
+        appMenu.addItem(NSMenuItem.separator())
         appMenu.addItem(withTitle: "Quit Bridge", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        mainMenu.addItem(NSMenuItem(label: "Bridge", submenu: appMenu))
 
-        let fileMenu = NSMenu(title: "File")
-        fileMenu.addItem(withTitle: "Open Bridge", action: #selector(openMainWindow), keyEquivalent: "o")
-        fileMenu.addItem(NSMenuItem.separator())
-        fileMenu.addItem(withTitle: "Close Window", action: #selector(closeMainWindow), keyEquivalent: "w")
-        mainMenu.addItem(NSMenuItem(label: "File", submenu: fileMenu))
+        let devicesMenuItem = NSMenuItem()
+        mainMenu.addItem(devicesMenuItem)
+        let devicesMenu = NSMenu(title: "Devices")
+        devicesMenuItem.submenu = devicesMenu
 
-        let windowMenu = NSMenu(title: "Window")
-        windowMenu.addItem(withTitle: "Minimize", action: #selector(NSWindow.miniaturize(_:)), keyEquivalent: "m")
-        mainMenu.addItem(NSMenuItem(label: "Window", submenu: windowMenu))
-
-        NSApplication.shared.mainMenu = mainMenu
+        let refreshItem = NSMenuItem(title: "Refresh Devices", action: #selector(refreshDevices), keyEquivalent: "r")
+        devicesMenu.addItem(refreshItem)
     }
 
-    @objc private func openMainWindow() {
-        if mainWindow == nil {
-            mainWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
-                styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
-            mainWindow?.title = "Bridge"
-            mainWindow?.contentViewController = NSHostingController(rootView: ContentView(store: store))
-            mainWindow?.center()
-            mainWindow?.setFrameAutosaveName("BridgeMainWindow")
-            mainWindow?.isReleasedWhenClosed = false
+    private func setupDeviceMonitor() {
+        let monitor = DeviceMonitorService.shared
+        deviceMonitor = monitor
+        monitor.startMonitoring()
+    }
+
+    // MARK: - Actions
+
+    @objc private func togglePopover() {
+        if popover.isShown {
+            closePopover()
+        } else {
+            showPopover()
         }
-        mainWindow?.makeKeyAndOrderFront(nil)
-        NSApplication.shared.activate(ignoringOtherApps: true)
     }
 
-    @objc private func closeMainWindow() { mainWindow?.close() }
-    @objc private func showAbout() { NSApplication.shared.orderFrontStandardAboutPanel(nil) }
+    private func showPopover() {
+        guard let button = statusItem.button else { return }
+        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+    }
+
+    private func closePopover() {
+        popover.performClose(nil)
+    }
+
+    @objc private func showAbout() {
+        NSApp.orderFrontStandardAboutPanel(nil)
+    }
+
+    @objc private func showSettings() {
+        Task { @MainActor in
+            self.store.showSettings = true
+        }
+    }
+
+    @objc private func refreshDevices() {
+        Task { @MainActor in
+            self.deviceMonitor?.refresh()
+        }
+    }
+
+    private func openMainWindow() {
+        mainWindow = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 700, height: 500),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable],
+            backing: .buffered,
+            defer: false
+        )
+        mainWindow?.title = "Bridge"
+        mainWindow?.contentViewController = NSHostingController(rootView: ContentView(store: store))
+        mainWindow?.makeKeyAndOrderFront(nil)
+    }
 }

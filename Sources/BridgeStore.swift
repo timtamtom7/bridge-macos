@@ -39,8 +39,7 @@ final class BridgeStore: ObservableObject {
             let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
             let bridgeDir = appSupport.appendingPathComponent("Bridge", isDirectory: true)
             try FileManager.default.createDirectory(at: bridgeDir, withIntermediateDirectories: true)
-            let dbPath = bridgeDir.appendingPathComponent("bridge.db")
-            db = try Connection(dbPath.path)
+            db = try Connection(bridgeDir.appendingPathComponent("bridge.db").path)
 
             let devicesTable = Table("devices")
             let syncLogTable = Table("sync_log")

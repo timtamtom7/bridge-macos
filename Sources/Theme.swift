@@ -28,40 +28,19 @@ extension Color {
         var intVal: UInt64 = 0
         Scanner(string: hexClean).scanHexInt64(&intVal)
         var a: UInt64 = 255, r: UInt64 = 0, g: UInt64 = 0, b: UInt64 = 0
-        switch hexClean.count {
-        case 3:
-            a = 255
-            r = ((intVal >> 8) & 0xF) * 17
-            g = ((intVal >> 4) & 0xF) * 17
-            b = (intVal & 0xF) * 17
-        case 6:
-            a = 255
-            r = (intVal >> 16) & 0xFF
-            g = (intVal >> 8) & 0xFF
-            b = intVal & 0xFF
-        case 8:
-            a = (intVal >> 24) & 0xFF
-            r = (intVal >> 16) & 0xFF
-            g = (intVal >> 8) & 0xFF
-            b = intVal & 0xFF
-        default:
-            a = 255; r = 0; g = 0; b = 0
-        }
+        let cnt = hexClean.count
+        if cnt == 3 { a = 255; r = ((intVal >> 8) & 0xF) * 17; g = ((intVal >> 4) & 0xF) * 17; b = (intVal & 0xF) * 17 }
+        else if cnt == 6 { a = 255; r = (intVal >> 16) & 0xFF; g = (intVal >> 8) & 0xFF; b = intVal & 0xFF }
+        else if cnt == 8 { a = (intVal >> 24) & 0xFF; r = (intVal >> 16) & 0xFF; g = (intVal >> 8) & 0xFF; b = intVal & 0xFF }
+        else { a = 255; r = 0; g = 0; b = 0 }
         self.init(.sRGB, red: Double(r) / 255.0, green: Double(g) / 255.0, blue: Double(b) / 255.0, opacity: Double(a) / 255.0)
     }
 }
 
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
-        content
-            .background(Theme.backgroundSecondary)
-            .cornerRadius(Theme.cornerRadiusMedium)
-            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+        content.background(Theme.backgroundSecondary).cornerRadius(Theme.cornerRadiusMedium)
+            .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
     }
 }
-
-extension View {
-    func cardStyle() -> some View {
-        modifier(CardStyle())
-    }
-}
+extension View { func cardStyle() -> some View { modifier(CardStyle()) } }
