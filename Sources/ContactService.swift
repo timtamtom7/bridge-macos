@@ -24,7 +24,9 @@ actor ContactService {
                 let addrParts = cnContact.postalAddresses.map { addr -> String in let v = addr.value; return "\(v.street), \(v.city)" }
                 contacts.append(Contact(givenName: cnContact.givenName, familyName: cnContact.familyName, phoneNumbers: cnContact.phoneNumbers.map { $0.value.stringValue }, emails: cnContact.emailAddresses.map { $0.value as String }, addresses: addrParts, notes: cnContact.note, lastModified: Date(), deviceUDID: ""))
             }
-        } catch { }
+        } catch {
+            print("ContactService: Failed to fetch Mac contacts: \(error)")
+        }
         return contacts
     }
 
@@ -36,7 +38,9 @@ actor ContactService {
             cnContact.emailAddresses = contact.emails.map { CNLabeledValue(label: nil, value: $0 as NSString) }
             cnContact.note = contact.notes
             let saveRequest = CNSaveRequest(); saveRequest.add(cnContact, toContainerWithIdentifier: nil)
-            do { try CNContactStore().execute(saveRequest) } catch { }
+            do { try CNContactStore().execute(saveRequest) } catch {
+                print("ContactService: Failed to save contact \(contact.fullName): \(error)")
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 // MARK: - Bridge R12: Collaboration & Shared Connections
 

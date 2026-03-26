@@ -162,7 +162,9 @@ final class BridgeStore: ObservableObject {
                 Expression<Date>("import_date") <- Date(),
                 Expression<String>("mac_url") <- photo.path
             ))
-        } catch { }
+        } catch {
+            print("BridgeStore: Failed to record imported photo: \(error)")
+        }
     }
 
     func syncContacts() async {
@@ -215,7 +217,9 @@ final class BridgeStore: ObservableObject {
                 Expression<Int>("items_synced") <- items,
                 Expression<String>("status") <- SyncLog.SyncStatus.completed.rawValue
             ))
-        } catch { }
+        } catch {
+            print("BridgeStore: Failed to record sync: \(error)")
+        }
     }
 
     func loadSettings() { settingsStore.load() }

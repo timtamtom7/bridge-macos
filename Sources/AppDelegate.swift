@@ -21,6 +21,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.setupDeviceMonitor()
         self.setupMainMenu()
         self.store.loadSettings()
+        BridgeAPIService.shared.start()
 
         // Initialize BridgeState for shortcuts
         BridgeState.shared.configure(store: self.store)
@@ -32,6 +33,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        BridgeAPIService.shared.stop()
     }
 
     // MARK: - Setup

@@ -1,5 +1,6 @@
 import Foundation
 import os.log
+import CommonCrypto
 
 final class ErrorRecoveryService {
     static let shared = ErrorRecoveryService()
@@ -178,5 +179,3 @@ extension Data {
         return hash.map { String(format: "%02x", $0) }.joined()
     }
 }
-
-import CommonCrypto

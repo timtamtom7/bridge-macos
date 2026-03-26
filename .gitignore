@@ -1,1 +1,5 @@
 DerivedData/
+.buildhome/
+.cache/
+.cfhome/
+.derivedData/
