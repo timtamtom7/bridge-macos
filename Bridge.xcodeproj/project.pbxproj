@@ -8,28 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		00EC0543A53DF19B6F877866 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3815F7E8DA85E0B9FE92524 /* APIService.swift */; };
+		02A938E2FE1979DF04FDBEAC /* SubscriptionTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757E9C949334F8A2F2C8D832 /* SubscriptionTier.swift */; };
+		1156DAC0EA17957F094B3D9F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E0F828F32A73DA918B9C742 /* Localizable.strings */; };
 		1CF1DD7637D4BFAD5A87DC1F /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608FBB443EE84904FAE367F4 /* iCloudSyncManager.swift */; };
+		30CADA3B3B50FE8599747787 /* DiskSpaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85B6C302F041BF5DBFC7857 /* DiskSpaceManager.swift */; };
+		34C212B90786249BF0D9AC4F /* DiagnosticsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955A0E2D277AB0625301CFE /* DiagnosticsPanel.swift */; };
 		4A03988C0ABE4AF8EEDC9092 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15A0335C1E8BD34BA1E57C /* CollaborationService.swift */; };
 		4F960F7FF9C6EB7A8E790CCF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1976F13198308BFD7B339F /* Models.swift */; };
+		528D8BC5203D3DAB1206F858 /* CloudStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898D1FB7715B82CB8879E7C /* CloudStorageManager.swift */; };
 		551B9E74419A2F48CA6C72F6 /* DeviceHealthMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE833915C3A6ED5EDBD4B45D /* DeviceHealthMonitor.swift */; };
 		5C69B31D6CFCD0F2FA37E27F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55146E152CD70EA89152C68D /* ContentView.swift */; };
 		624A592403D099889609F3C3 /* test_write.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DC08BDC865B58E9C2447DB3 /* test_write.txt */; };
+		63241E4C85F926D943CA369F /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60D381087C5C9F5D39EF5C /* SkeletonView.swift */; };
 		6B619FF376AFABCC3E5DBB32 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 89C50F40CDFC60930E61F7B1 /* SQLite */; };
 		7504E5FC8DF6B9B7A19E84AB /* BridgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA000D702B0245E096335B /* BridgeStore.swift */; };
+		7BD803C2D6F767FD501EDE93 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93726485555A5FC66753643 /* CacheManager.swift */; };
 		80B36A5B9693169B0D0E930C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396727DE746399ABE0E7D989 /* main.swift */; };
 		815D1BC9A8C334B58B420496 /* HealthInsightsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F170AAD298F69777750A395 /* HealthInsightsEngine.swift */; };
+		84E742222672FA59908D641B /* PrivacyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860208B473D549D922AFDAC /* PrivacyService.swift */; };
 		8E2F6B1419C5095DAF52E738 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA7C8EFBEAC6D777E3C224 /* ContactService.swift */; };
 		94852ED88F9D483F6B16C75B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ED52496B4F6E0085BA86DE /* AppDelegate.swift */; };
+		A6A299130F91D71B0C72BCD6 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C38067BAD0B49F3C730A4 /* FeedbackManager.swift */; };
 		A76692B7E53177A08332CECC /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE133DAC0692F818945BBD /* Theme.swift */; };
 		AB86F5AFA54E38CB84EA7B47 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */; };
 		ACD720CFF8EAB761CCD3E5D2 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB570AAF34D2CCBABD04CFF /* PhotoService.swift */; };
 		B7C58C263A503BC515290148 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C0989A6283B12B873DBF1 /* DeviceService.swift */; };
+		B7D1AD6CD1D1F497D9529E60 /* NetworkTimeoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A75DD9F4A67EAAB63F9DFB /* NetworkTimeoutHandler.swift */; };
+		B87B989FB7B35D7A377614D9 /* DatabaseOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7953E14A6E668BE43E14EA /* DatabaseOptimizer.swift */; };
+		BFA9AB46782DFF606ADF1F72 /* ErrorRecoveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F72EEB1F5ACE23931E6760A /* ErrorRecoveryService.swift */; };
+		C96DC002C998C028E098683B /* EdgeCaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124737B262419FEEF7F2E9D7 /* EdgeCaseHandler.swift */; };
 		D7284186333330A314D727D6 /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42AE53EA88C6EAF13D5A16 /* ShortcutsManager.swift */; };
+		D9E636111A320B0C25D7E4C8 /* AccessibilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2AFC8BC8DC297602A9B638 /* AccessibilityExtensions.swift */; };
+		DAA7BE41B60CB8217552B74A /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D69020399DB7D8643E63E /* SubscriptionManager.swift */; };
 		DF82AB2AFA63055AA17EC1A3 /* EnterpriseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9D5A771FC9373A9B3DFC /* EnterpriseService.swift */; };
 		F730BE82D97B9CA2552BAF58 /* ExtendedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382360AD7E11881FBC81803C /* ExtendedModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0898D1FB7715B82CB8879E7C /* CloudStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageManager.swift; sourceTree = "<group>"; };
+		124737B262419FEEF7F2E9D7 /* EdgeCaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeCaseHandler.swift; sourceTree = "<group>"; };
 		14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		18FC9D5A771FC9373A9B3DFC /* EnterpriseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseService.swift; sourceTree = "<group>"; };
 		2BFE42DAA3580971FFBE20D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -41,16 +58,29 @@
 		44ED52496B4F6E0085BA86DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A1976F13198308BFD7B339F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		4B42AE53EA88C6EAF13D5A16 /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
+		4E0F828F32A73DA918B9C742 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E60D381087C5C9F5D39EF5C /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
+		4E9C38067BAD0B49F3C730A4 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		55146E152CD70EA89152C68D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		58E003C57BDD9F417908C0C4 /* Bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F170AAD298F69777750A395 /* HealthInsightsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthInsightsEngine.swift; sourceTree = "<group>"; };
 		608FBB443EE84904FAE367F4 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
+		6955A0E2D277AB0625301CFE /* DiagnosticsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsPanel.swift; sourceTree = "<group>"; };
+		6F72EEB1F5ACE23931E6760A /* ErrorRecoveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRecoveryService.swift; sourceTree = "<group>"; };
+		757E9C949334F8A2F2C8D832 /* SubscriptionTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTier.swift; sourceTree = "<group>"; };
+		7C7953E14A6E668BE43E14EA /* DatabaseOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOptimizer.swift; sourceTree = "<group>"; };
 		80AA7C8EFBEAC6D777E3C224 /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
+		934D69020399DB7D8643E63E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		9CBA000D702B0245E096335B /* BridgeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeStore.swift; sourceTree = "<group>"; };
 		9E15A0335C1E8BD34BA1E57C /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
 		A3815F7E8DA85E0B9FE92524 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		BCCE133DAC0692F818945BBD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C85B6C302F041BF5DBFC7857 /* DiskSpaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskSpaceManager.swift; sourceTree = "<group>"; };
+		C93726485555A5FC66753643 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		D1A75DD9F4A67EAAB63F9DFB /* NetworkTimeoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeoutHandler.swift; sourceTree = "<group>"; };
 		D5696DE730A63B8135A28A1F /* Bridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bridge.entitlements; sourceTree = "<group>"; };
+		E860208B473D549D922AFDAC /* PrivacyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyService.swift; sourceTree = "<group>"; };
+		EA2AFC8BC8DC297602A9B638 /* AccessibilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityExtensions.swift; sourceTree = "<group>"; };
 		FE833915C3A6ED5EDBD4B45D /* DeviceHealthMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHealthMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,9 +96,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0541ED32DEA2C83C2DF572BE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6955A0E2D277AB0625301CFE /* DiagnosticsPanel.swift */,
+				4E60D381087C5C9F5D39EF5C /* SkeletonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2C4BBDCA2C9D20AB79494EC7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E0F828F32A73DA918B9C742 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		31741747AB0685A9268048BE /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				C93726485555A5FC66753643 /* CacheManager.swift */,
+				7C7953E14A6E668BE43E14EA /* DatabaseOptimizer.swift */,
+			);
+			path = Performance;
+			sourceTree = "<group>";
+		};
+		879F49C805330234F5B878D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				757E9C949334F8A2F2C8D832 /* SubscriptionTier.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A39A5B27ABBC0B7C59E187AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EA2AFC8BC8DC297602A9B638 /* AccessibilityExtensions.swift */,
 				44ED52496B4F6E0085BA86DE /* AppDelegate.swift */,
 				D5696DE730A63B8135A28A1F /* Bridge.entitlements */,
 				9CBA000D702B0245E096335B /* BridgeStore.swift */,
@@ -84,7 +149,11 @@
 				14DCD9ADC59AEE3F1CFF9B16 /* SettingsStore.swift */,
 				2DC08BDC865B58E9C2447DB3 /* test_write.txt */,
 				BCCE133DAC0692F818945BBD /* Theme.swift */,
+				879F49C805330234F5B878D5 /* Models */,
+				31741747AB0685A9268048BE /* Performance */,
+				2C4BBDCA2C9D20AB79494EC7 /* Resources */,
 				C7EB53816CD747649A55C420 /* Services */,
+				0541ED32DEA2C83C2DF572BE /* Views */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -101,11 +170,19 @@
 			isa = PBXGroup;
 			children = (
 				A3815F7E8DA85E0B9FE92524 /* APIService.swift */,
+				0898D1FB7715B82CB8879E7C /* CloudStorageManager.swift */,
 				9E15A0335C1E8BD34BA1E57C /* CollaborationService.swift */,
 				FE833915C3A6ED5EDBD4B45D /* DeviceHealthMonitor.swift */,
+				C85B6C302F041BF5DBFC7857 /* DiskSpaceManager.swift */,
+				124737B262419FEEF7F2E9D7 /* EdgeCaseHandler.swift */,
 				18FC9D5A771FC9373A9B3DFC /* EnterpriseService.swift */,
+				6F72EEB1F5ACE23931E6760A /* ErrorRecoveryService.swift */,
+				4E9C38067BAD0B49F3C730A4 /* FeedbackManager.swift */,
 				608FBB443EE84904FAE367F4 /* iCloudSyncManager.swift */,
+				D1A75DD9F4A67EAAB63F9DFB /* NetworkTimeoutHandler.swift */,
+				E860208B473D549D922AFDAC /* PrivacyService.swift */,
 				4B42AE53EA88C6EAF13D5A16 /* ShortcutsManager.swift */,
+				934D69020399DB7D8643E63E /* SubscriptionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -162,6 +239,7 @@
 			knownRegions = (
 				Base,
 				en,
+				es,
 			);
 			mainGroup = C69B5C8EE7DF00C23A7FE005;
 			packageReferences = (
@@ -180,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1156DAC0EA17957F094B3D9F /* Localizable.strings in Resources */,
 				624A592403D099889609F3C3 /* test_write.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,20 +271,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				00EC0543A53DF19B6F877866 /* APIService.swift in Sources */,
+				D9E636111A320B0C25D7E4C8 /* AccessibilityExtensions.swift in Sources */,
 				94852ED88F9D483F6B16C75B /* AppDelegate.swift in Sources */,
 				7504E5FC8DF6B9B7A19E84AB /* BridgeStore.swift in Sources */,
+				7BD803C2D6F767FD501EDE93 /* CacheManager.swift in Sources */,
+				528D8BC5203D3DAB1206F858 /* CloudStorageManager.swift in Sources */,
 				4A03988C0ABE4AF8EEDC9092 /* CollaborationService.swift in Sources */,
 				8E2F6B1419C5095DAF52E738 /* ContactService.swift in Sources */,
 				5C69B31D6CFCD0F2FA37E27F /* ContentView.swift in Sources */,
+				B87B989FB7B35D7A377614D9 /* DatabaseOptimizer.swift in Sources */,
 				551B9E74419A2F48CA6C72F6 /* DeviceHealthMonitor.swift in Sources */,
 				B7C58C263A503BC515290148 /* DeviceService.swift in Sources */,
+				34C212B90786249BF0D9AC4F /* DiagnosticsPanel.swift in Sources */,
+				30CADA3B3B50FE8599747787 /* DiskSpaceManager.swift in Sources */,
+				C96DC002C998C028E098683B /* EdgeCaseHandler.swift in Sources */,
 				DF82AB2AFA63055AA17EC1A3 /* EnterpriseService.swift in Sources */,
+				BFA9AB46782DFF606ADF1F72 /* ErrorRecoveryService.swift in Sources */,
 				F730BE82D97B9CA2552BAF58 /* ExtendedModels.swift in Sources */,
+				A6A299130F91D71B0C72BCD6 /* FeedbackManager.swift in Sources */,
 				815D1BC9A8C334B58B420496 /* HealthInsightsEngine.swift in Sources */,
 				4F960F7FF9C6EB7A8E790CCF /* Models.swift in Sources */,
+				B7D1AD6CD1D1F497D9529E60 /* NetworkTimeoutHandler.swift in Sources */,
 				ACD720CFF8EAB761CCD3E5D2 /* PhotoService.swift in Sources */,
+				84E742222672FA59908D641B /* PrivacyService.swift in Sources */,
 				AB86F5AFA54E38CB84EA7B47 /* SettingsStore.swift in Sources */,
 				D7284186333330A314D727D6 /* ShortcutsManager.swift in Sources */,
+				63241E4C85F926D943CA369F /* SkeletonView.swift in Sources */,
+				DAA7BE41B60CB8217552B74A /* SubscriptionManager.swift in Sources */,
+				02A938E2FE1979DF04FDBEAC /* SubscriptionTier.swift in Sources */,
 				A76692B7E53177A08332CECC /* Theme.swift in Sources */,
 				1CF1DD7637D4BFAD5A87DC1F /* iCloudSyncManager.swift in Sources */,
 				80B36A5B9693169B0D0E930C /* main.swift in Sources */,

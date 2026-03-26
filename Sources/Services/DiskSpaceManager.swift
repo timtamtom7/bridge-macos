@@ -65,14 +65,14 @@ final class DiskSpaceManager {
         
         switch status {
         case .warning:
-            logger.warning("Low disk space warning: \(freeSpace) bytes free")
+            logger.warning("Low disk space warning: \(self.freeSpace) bytes free")
             NotificationCenter.default.post(
                 name: .diskSpaceWarning,
                 object: nil,
                 userInfo: ["status": status]
             )
         case .critical, .insufficient:
-            logger.error("Critical disk space: \(freeSpace) bytes free")
+            logger.error("Critical disk space: \(self.freeSpace) bytes free")
             NotificationCenter.default.post(
                 name: .diskSpaceCritical,
                 object: nil,

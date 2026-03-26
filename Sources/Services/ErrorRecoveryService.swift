@@ -30,13 +30,13 @@ final class ErrorRecoveryService {
             }
         }
         
-        logger.error("AFC operation failed after \(maxRetries) attempts")
+        logger.error("AFC operation failed after \(self.maxRetries) attempts")
         throw lastError ?? ErrorRecoveryError.maxRetriesExceeded
     }
     
     // MARK: - Sync Recovery
     
-    func handleDeviceDisconnect(syncState: SyncState, completion: @escaping (SyncRecoveryAction) -> Void) {
+    func handleDeviceDisconnect(syncState: inout SyncState, completion: @escaping (SyncRecoveryAction) -> Void) {
         logger.warning("Device disconnected during sync")
         
         syncState.pause()
@@ -50,13 +50,13 @@ final class ErrorRecoveryService {
         completion(.pauseAndWait)
     }
     
-    func resumeSync(from syncState: SyncState) {
+    func resumeSync(from syncState: inout SyncState) {
         logger.info("Resuming sync from previous state")
         syncState.resume()
         NotificationCenter.default.post(name: .syncResumed, object: nil)
     }
     
-    func abortSync(from syncState: SyncState) {
+    func abortSync(from syncState: inout SyncState) {
         logger.info("Aborting sync")
         syncState.abort()
         NotificationCenter.default.post(name: .syncAborted, object: nil)

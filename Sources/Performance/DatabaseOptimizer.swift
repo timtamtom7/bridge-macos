@@ -81,7 +81,7 @@ final class BackgroundIndexer {
     
     func indexPhotos(_ photos: [Photo], hash: @escaping (Data) -> String, completion: @escaping () -> Void) {
         operationQueue.addOperation {
-            for photo in photos {
+            for var photo in photos {
                 autoreleasepool {
                     if let data = try? Data(contentsOf: photo.localURL) {
                         let computedHash = hash(data)

@@ -14,6 +14,11 @@ struct Device: Identifiable, Equatable {
     var isUsingiCloudBackup: Bool
     var lastSeen: Date
     var isPrimary: Bool
+    var photoCount: Int { 0 }
+    var contactCount: Int { 0 }
+    var messageCount: Int { 0 }
+    var displayName: String { name }
+    mutating func setDisplayName(_ newName: String) { name = newName }
 
     init(id: UUID = UUID(), udid: String, name: String = "Unknown Device",
          model: String = "Unknown", iosVersion: String = "Unknown",
@@ -44,6 +49,8 @@ struct Photo: Identifiable, Equatable {
     var thumbnailData: Data?
     var isSelected: Bool
     var isDuplicate: Bool
+    var localURL: URL { URL(fileURLWithPath: path) }
+    var hash: String?
 
     init(id: UUID = UUID(), filename: String, path: String, creationDate: Date? = nil,
          fileSize: Int64 = 0, thumbnailData: Data? = nil, isSelected: Bool = false, isDuplicate: Bool = false) {

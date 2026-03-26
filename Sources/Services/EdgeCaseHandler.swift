@@ -56,7 +56,7 @@ final class EdgeCaseHandler {
             
             if let count = seenNames[device.name] {
                 seenNames[device.name] = count + 1
-                updatedDevice.displayName = "\(device.name) (\(device.udid.suffix(4)))"
+                updatedDevice.setDisplayName("\(device.name) (\(device.udid.suffix(4)))")
             } else {
                 seenNames[device.name] = 1
             }

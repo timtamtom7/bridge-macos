@@ -1,6 +1,7 @@
 import Foundation
 import os.log
 import AppKit
+import SwiftUI
 
 final class FeedbackManager {
     static let shared = FeedbackManager()
@@ -229,7 +230,9 @@ extension NSWindow {
 
 extension NSView {
     var capturedImage: NSImage? {
-        guard let bitmap = NSBitmapImageRep(view: self) else { return nil }
-        return bitmap.ttimage
+        let rect = self.bounds
+        guard let bitmap = self.bitmapImageRepForCachingDisplay(in: rect) else { return nil }
+        self.cacheDisplay(in: rect, to: bitmap)
+        return NSImage(size: rect.size)
     }
 }
