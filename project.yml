@@ -36,11 +36,6 @@ targets:
         LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
           - "@executable_path/../Frameworks"
-        OTHER_LDFLAGS:
-          - "-F"
-          - "/Library/Apple/System/Library/PrivateFrameworks"
-          - "-framework"
-          - MobileDevice
     dependencies:
       - package: SQLite
         product: SQLite
