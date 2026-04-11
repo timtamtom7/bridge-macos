@@ -5,6 +5,7 @@ import StoreKit
 public final class BridgeSubscriptionManager: ObservableObject {
     public static let shared = BridgeSubscriptionManager()
     @Published public private(set) var subscription: BridgeSubscription?
+    // @Published on products ensures UI updates when StoreKit products load
     @Published public private(set) var products: [Product] = []
     private init() {}
     public func loadProducts() async {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SkeletonView: View {
     @State private var isAnimating = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     
     let width: CGFloat?
     let height: CGFloat
@@ -26,13 +27,18 @@ struct SkeletonView: View {
             )
             .frame(width: width, height: height)
             .onAppear {
-                withAnimation(
-                    Animation.linear(duration: 1.5)
-                        .repeatForever(autoreverses: false)
-                ) {
+                if reduceMotion {
                     isAnimating = true
+                } else {
+                    withAnimation(
+                        Animation.linear(duration: 1.5)
+                            .repeatForever(autoreverses: false)
+                    ) {
+                        isAnimating = true
+                    }
                 }
             }
+            .accessibilityLabel("Loading placeholder")
     }
 }
 

@@ -19,6 +19,8 @@ final class BridgeStore: ObservableObject {
     @Published var backupProgress: BackupProgress = .idle
     @Published var errorMessage: String?
     @Published var isDeviceConnected = false
+    // Accessibility: screen reader announcements
+    @Published var accessibilityAnnouncement: String = ""
 
     let deviceService: DeviceService
     let photoService: PhotoService
@@ -150,6 +152,8 @@ final class BridgeStore: ObservableObject {
         }
         importProgress = .completed(imported: imported, skipped: skipped)
         selectedPhotos.removeAll()
+        // VoiceOver announcement for import completion
+        accessibilityAnnouncement = "Photo import complete. \(imported) photos imported, \(skipped) skipped."
     }
 
     private func recordImportedPhoto(_ photo: Photo) {
@@ -184,6 +188,8 @@ final class BridgeStore: ObservableObject {
         contacts = merged
         contactService.saveContactsToMac(merged)
         recordSync(deviceID: device.id, type: .contacts, items: merged.count)
+        // VoiceOver announcement for sync completion
+        accessibilityAnnouncement = "Contact sync complete. \(merged.count) contacts synchronized."
     }
 
     func backupNow() async {

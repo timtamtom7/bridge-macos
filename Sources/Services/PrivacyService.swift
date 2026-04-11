@@ -22,5 +22,4 @@ public final class BridgePrivacyService {
         return combined
     }
     public func wipeAllData() { if let bundleId = Bundle.main.bundleIdentifier { UserDefaults.standard.removePersistentDomain(forName: bundleId) } }
-    public static var privacyManifest: [String: Any] { ["NSPrivacyTracking": false, "NSPrivacyTrackingDomains": [], "NSPrivacyCollectedDataTypes": [], "NSPrivacyAccessedDataTypes": [["NSPrivacyAccessedDataType": "NSPrivacyAccessedDataTypeUserDefaults", "NSPrivacyAccessedDataTypeReasons": ["CA92.1"]]]] }
 }

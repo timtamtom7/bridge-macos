@@ -3,8 +3,9 @@ import Contacts
 
 actor ContactService {
     func fetchContacts(from device: Device) async -> [Contact] {
+        // Use well-known mount point paths instead of device.name to avoid
+        // path traversal issues if device name contains '/' or '..'.
         let possiblePaths = [
-            "/Volumes/\(device.name)/Library/Application Support/AddressBook/AddressBook.sqlitedb",
             "/Volumes/MobileSync/Library/Application Support/AddressBook/AddressBook.sqlitedb",
             "/Volumes/iPhone/Library/Application Support/AddressBook/AddressBook.sqlitedb"
         ]
@@ -31,16 +32,19 @@ actor ContactService {
     }
 
     nonisolated func saveContactsToMac(_ contacts: [Contact]) {
+        let saveRequest = CNSaveRequest()
         for contact in contacts {
             let cnContact = CNMutableContact()
             cnContact.givenName = contact.givenName; cnContact.familyName = contact.familyName
             cnContact.phoneNumbers = contact.phoneNumbers.map { CNLabeledValue(label: nil, value: CNPhoneNumber(stringValue: $0)) }
             cnContact.emailAddresses = contact.emails.map { CNLabeledValue(label: nil, value: $0 as NSString) }
             cnContact.note = contact.notes
-            let saveRequest = CNSaveRequest(); saveRequest.add(cnContact, toContainerWithIdentifier: nil)
-            do { try CNContactStore().execute(saveRequest) } catch {
-                print("ContactService: Failed to save contact \(contact.fullName): \(error)")
-            }
+            saveRequest.add(cnContact, toContainerWithIdentifier: nil)
+        }
+        do {
+            try CNContactStore().execute(saveRequest)
+        } catch {
+            print("ContactService: Failed to save contacts: \(error)")
         }
     }
 }

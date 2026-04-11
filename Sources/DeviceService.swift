@@ -72,7 +72,8 @@ final class DeviceMonitorService {
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in await self?.store.refreshDevices() }
         }
-        timer?.fire()
+        // Initial refresh is triggered separately via Task — don't fire timer immediately
+        // to avoid race condition on first launch before store is fully initialized.
         Task { await store.refreshDevices() }
     }
     func stopMonitoring() { timer?.invalidate(); timer = nil }

@@ -3,7 +3,7 @@ import UserNotifications
 
 /// Device health monitoring for Bridge
 /// Monitors battery level, storage, and sends alerts when thresholds are exceeded
-final class DeviceHealthMonitor {
+final class DeviceHealthMonitor: UNUserNotificationCenterDelegate {
     static let shared = DeviceHealthMonitor()
 
     private var timer: Timer?
@@ -23,6 +23,25 @@ final class DeviceHealthMonitor {
     }
 
     private init() {}
+
+    // MARK: - UNUserNotificationCenterDelegate
+
+    // Required delegate method — forward all notifications to the system
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound])
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        completionHandler()
+    }
 
     // MARK: - Monitor
 
@@ -81,6 +100,7 @@ final class DeviceHealthMonitor {
     // MARK: - Notifications
 
     func requestNotificationPermission() {
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let error = error {
                 print("Notification auth error: \(error)")

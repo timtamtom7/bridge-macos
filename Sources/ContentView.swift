@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @ObservedObject var store: BridgeStore
@@ -11,7 +12,27 @@ struct ContentView: View {
                 deviceInfoView.tag(0); photosView.tag(1); contactsView.tag(2); backupView.tag(3)
             }.tabViewStyle(.automatic)
             statusBar
-        }.frame(width: 480, height: 520).background(Theme.backgroundPrimary)
+        }
+        .frame(minWidth: 400, idealWidth: 480, minHeight: 440, idealHeight: 520)
+        .background(Theme.backgroundPrimary)
+        .onChange(of: store.accessibilityAnnouncement) { announcement in
+            if !announcement.isEmpty {
+                // Post VoiceOver announcement
+                if let window = NSApplication.shared.mainWindow {
+                    NSAccessibility.post(
+                        element: window.contentView,
+                        notification: .announcement,
+                        value: announcement
+                    )
+                }
+                // Reset after posting
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    if self.store.accessibilityAnnouncement == announcement {
+                        self.store.accessibilityAnnouncement = ""
+                    }
+                }
+            }
+        }
     }
 
     private var headerView: some View {
@@ -150,6 +171,11 @@ struct PhotoThumbnailView: View {
             Rectangle().fill(Theme.backgroundTertiary).frame(width: 80, height: 80).overlay(Image(systemName: "photo").foregroundColor(Theme.secondaryGray))
             if isSelected { Circle().fill(Theme.primaryBlue).frame(width: 20, height: 20).overlay(Image(systemName: "checkmark").font(.caption2.bold()).foregroundColor(.white)).padding(4) }
             if photo.isDuplicate { Circle().fill(Theme.warningOrange).frame(width: 16, height: 16).overlay(Image(systemName: "exclamationmark").font(.system(size: 8).bold()).foregroundColor(.white)).padding(4).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading) }
-        }.cornerRadius(Theme.cornerRadiusSmall).overlay(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall).stroke(isSelected ? Theme.primaryBlue : Color.clear, lineWidth: 2)).onTapGesture(perform: onTap)
+        }
+        .cornerRadius(Theme.cornerRadiusSmall)
+        .overlay(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall).stroke(isSelected ? Theme.primaryBlue : Color.clear, lineWidth: 2))
+        .onTapGesture(perform: onTap)
+        .accessibilityLabel(photo.filename)
+        .accessibilityAddTraits(photo.isSelected ? .isSelected : [])
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 import os.log
-import CommonCrypto
+import CryptoKit
 
 final class ErrorRecoveryService {
     static let shared = ErrorRecoveryService()
@@ -172,10 +172,7 @@ extension Notification.Name {
 
 extension Data {
     func sha256Hash() -> String {
-        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-        self.withUnsafeBytes {
-            _ = CC_SHA256($0.baseAddress, CC_LONG(self.count), &hash)
-        }
-        return hash.map { String(format: "%02x", $0) }.joined()
+        let digest = SHA256.hash(data: self)
+        return digest.map { String(format: "%02x", $0) }.joined()
     }
 }

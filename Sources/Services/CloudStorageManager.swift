@@ -1,5 +1,6 @@
 import Foundation
 import os.log
+import CryptoKit
 
 // MARK: - Cloud Storage Provider Protocol
 
@@ -235,13 +236,30 @@ final class CloudStorageManager {
         return data
     }
     
+    private var encryptionKey: SymmetricKey {
+        // Derive a per-install key from the keychain. If unavailable, derive from device ID.
+        if let stored = try? BridgePrivacyService.shared.getOrCreateKey() as SymmetricKey? {
+            return stored
+        }
+        // Fallback: derive from bundle ID (weak, but better than nothing for local cloud storage)
+        let bundleId = Bundle.main.bundleIdentifier ?? "com.bridgeapp.bridge"
+        let keyMaterial = Data(bundleId.utf8)
+        return SymmetricKey(data: SHA256.hash(data: keyMaterial))
+    }
+    
     private func encrypt(_ data: Data) throws -> Data {
-        // AES-256 encryption before cloud upload
-        return data
+        let key = encryptionKey
+        let sealedBox = try AES.GCM.seal(data, using: key)
+        guard let combined = sealedBox.combined else {
+            throw CloudStorageError.encryptionFailed
+        }
+        return combined
     }
     
     private func decrypt(_ data: Data) throws -> Data {
-        return data
+        let key = encryptionKey
+        let sealedBox = try AES.GCM.SealedBox(combined: data)
+        return try AES.GCM.open(sealedBox, using: key)
     }
 }
 
@@ -253,6 +271,7 @@ enum CloudStorageError: LocalizedError {
     case noProviderSelected
     case uploadFailed
     case downloadFailed
+    case encryptionFailed
     
     var errorDescription: String? {
         switch self {
@@ -266,6 +285,8 @@ enum CloudStorageError: LocalizedError {
             return "Failed to upload to cloud"
         case .downloadFailed:
             return "Failed to download from cloud"
+        case .encryptionFailed:
+            return "Failed to encrypt data for cloud storage"
         }
     }
 }

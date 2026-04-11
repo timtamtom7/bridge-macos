@@ -139,7 +139,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 final class BridgeState {
     static let shared = BridgeState()
 
-    var store: BridgeStore?
+    // Strong reference — ShortcutsManager and other intents depend on this being non-nil
+    // once configured at launch. Configured once in AppDelegate.applicationDidFinishLaunching.
+    private(set) var store: BridgeStore?
 
     var devices: [Device] {
         store?.devices ?? []

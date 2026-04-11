@@ -13,19 +13,20 @@ final class DatabaseOptimizer {
     func createIndexes(on db: Connection) throws {
         logger.info("Creating database indexes...")
         
-        // Index on sync_log table
-        try db.run("CREATE INDEX IF NOT EXISTS idx_sync_log_device_id ON sync_log(device_id)")
-        try db.run("CREATE INDEX IF NOT EXISTS idx_sync_log_timestamp ON sync_log(timestamp)")
-        try db.run("CREATE INDEX IF NOT EXISTS idx_sync_log_status ON sync_log(status)")
-        
-        // Index on imported_photos table
-        try db.run("CREATE INDEX IF NOT EXISTS idx_imported_photos_device_id ON imported_photos(device_id)")
-        try db.run("CREATE INDEX IF NOT EXISTS idx_imported_photos_import_date ON imported_photos(import_date)")
-        try db.run("CREATE INDEX IF NOT EXISTS idx_imported_photos_hash ON imported_photos(hash)")
-        
-        // Index on devices table
-        try db.run("CREATE INDEX IF NOT EXISTS idx_devices_last_sync ON devices(last_sync)")
-        try db.run("CREATE INDEX IF NOT EXISTS idx_devices_name ON devices(name)")
+        // Use db.execute for DDL statements — db.run is for queries that return rows.
+        // All SQL here is static (no user input interpolation) — safe by construction.
+        let indexDDL = """
+            CREATE INDEX IF NOT EXISTS idx_sync_log_device_id ON sync_log(device_id);
+            CREATE INDEX IF NOT EXISTS idx_sync_log_timestamp ON sync_log(started_at);
+            CREATE INDEX IF NOT EXISTS idx_sync_log_status ON sync_log(status);
+            CREATE INDEX IF NOT EXISTS idx_imported_photos_device_id ON imported_photos(device_id);
+            CREATE INDEX IF NOT EXISTS idx_imported_photos_import_date ON imported_photos(import_date);
+            CREATE INDEX IF NOT EXISTS idx_imported_photos_hash ON imported_photos(hash);
+            CREATE INDEX IF NOT EXISTS idx_devices_name ON devices(name);
+            """
+        for statement in indexDDL.split(separator: "\n").map({ String($0).trimmingCharacters(in: .whitespaces) }).filter({ !$0.isEmpty }) {
+            try db.execute(statement)
+        }
         
         logger.info("Database indexes created successfully")
     }
