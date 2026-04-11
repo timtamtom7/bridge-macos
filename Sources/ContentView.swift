@@ -1,9 +1,9 @@
 import SwiftUI
-import AppKit
 
 struct ContentView: View {
     @ObservedObject var store: BridgeStore
     @State private var selectedTab = 0
+    @State private var liveAnnouncement: String = ""
 
     var body: some View {
         VStack(spacing: 0) {
@@ -15,20 +15,17 @@ struct ContentView: View {
         }
         .frame(minWidth: 400, idealWidth: 480, minHeight: 440, idealHeight: 520)
         .background(Theme.backgroundPrimary)
+        // Accessibility: live region for sync/import completion announcements
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(liveAnnouncement)
         .onChange(of: store.accessibilityAnnouncement) { announcement in
             if !announcement.isEmpty {
-                // Post VoiceOver announcement
-                if let window = NSApplication.shared.mainWindow {
-                    NSAccessibility.post(
-                        element: window.contentView,
-                        notification: .announcement,
-                        value: announcement
-                    )
-                }
-                // Reset after posting
+                liveAnnouncement = announcement
+                // Reset after posting so the same announcement can fire again
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     if self.store.accessibilityAnnouncement == announcement {
                         self.store.accessibilityAnnouncement = ""
+                        self.liveAnnouncement = ""
                     }
                 }
             }

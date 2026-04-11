@@ -3,8 +3,11 @@ import UserNotifications
 
 /// Device health monitoring for Bridge
 /// Monitors battery level, storage, and sends alerts when thresholds are exceeded
-final class DeviceHealthMonitor: UNUserNotificationCenterDelegate {
+final class DeviceHealthMonitor: NSObject, UNUserNotificationCenterDelegate {
     static let shared = DeviceHealthMonitor()
+    override init() {
+        super.init()
+    }
 
     private var timer: Timer?
     private var lastBatteryAlert: Date?
@@ -21,8 +24,6 @@ final class DeviceHealthMonitor: UNUserNotificationCenterDelegate {
         get { UserDefaults.standard.double(forKey: "bridge_lowStorageThreshold").nonZeroOr(5.0) }
         set { UserDefaults.standard.set(newValue, forKey: "bridge_lowStorageThreshold") }
     }
-
-    private init() {}
 
     // MARK: - UNUserNotificationCenterDelegate
 
